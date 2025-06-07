@@ -1,7 +1,5 @@
 # b （雨）
 
-## description
-
 This repository is participate for `Build Games with Amazon Q CLI and score a T shirt 🏆👕` event.
 
 <p align="center">
@@ -15,6 +13,16 @@ This repository is participate for `Build Games with Amazon Q CLI and score a T 
 </p>
 
 Inspired by [한컴타자연습 산성비](https://namu.wiki/w/%ED%95%9C%EC%BB%B4%ED%83%80%EC%9E%90%EC%97%B0%EC%8A%B5%202007#s-6.1)
+
+## Game Play
+
+<p align="center">
+    <picture>
+      <img src="./.github/images/Jun-07-2025 15-21-23.gif" alt="Game Play"
+        width="65%"
+      >
+    </picture>
+</p>
 
 ## English-Japanese Katakana Word Game
 
