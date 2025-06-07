@@ -2,6 +2,18 @@
 
 ## description
 
+This repository is participate for `Build Games with Amazon Q CLI and score a T shirt 🏆👕` event.
+
+<p align="center">
+  <a href="https://community.aws/content/2xIoduO0xhkhUApQpVUIqBFGmAc/build-games-with-amazon-q-cli-and-score-a-t-shirt?trk=769a1a2b-8c19-4976-9c45-b6b1226c7d20&sc_channel=el">
+    <picture>
+      <img src="./.github/images/Poster-Amazon-Q-OPTION-A-RV-03-1200x600-FA-jpg.webp" alt="Build Games with Amazon Q CLI and score a T shirt 🏆👕"
+        width="65%"
+      >
+    </picture>
+  </a>
+</p>
+
 Inspired by [한컴타자연습 산성비](https://namu.wiki/w/%ED%95%9C%EC%BB%B4%ED%83%80%EC%9E%90%EC%97%B0%EC%8A%B5%202007#s-6.1)
 
 ## English-Japanese Katakana Word Game
