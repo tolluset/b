@@ -40,10 +40,10 @@ GRAY = (150, 150, 150)
 
 # Load custom fonts
 jp_font_path = os.path.join(
-    "aseets", "fonts", "Noto_Sans_JP", "NotoSansJP-VariableFont_wght.ttf"
+    "assets", "fonts", "Noto_Sans_JP", "NotoSansJP-VariableFont_wght.ttf"
 )
 en_font_path = os.path.join(
-    "aseets", "fonts", "Noto_Sans", "NotoSans-VariableFont_wdth,wght.ttf"
+    "assets", "fonts", "Noto_Sans", "NotoSans-VariableFont_wdth,wght.ttf"
 )
 
 # Load fonts in different sizes
@@ -94,8 +94,8 @@ class Word:
         self.speed = speed
         self.active = True
         self.matched = False  # Status flag for matched word animation
-        self.match_time = 0   # Time when word was matched
-        self.fade_out = 255   # Alpha value for fade out effect
+        self.match_time = 0  # Time when word was matched
+        self.fade_out = 255  # Alpha value for fade out effect
         # Add the word to the set of all shown words
         all_shown_words.add((english, japanese))
 
@@ -116,20 +116,22 @@ class Word:
         if self.matched:
             # Matched words float upward with fade out effect
             self.y -= 1  # Move upward
-            
+
             # Apply alpha value (fade out)
             eng_text = en_font_medium.render(self.english, True, WHITE)
             eng_text.set_alpha(self.fade_out)
             screen.blit(eng_text, (self.x, self.y))
-            
-            jpn_text = jp_font_small.render(self.japanese, True, GREEN)  # Green for matched words
+
+            jpn_text = jp_font_small.render(
+                self.japanese, True, GREEN
+            )  # Green for matched words
             jpn_text.set_alpha(self.fade_out)
             screen.blit(jpn_text, (self.x, self.y + 30))
         else:
             # Display normal words
             eng_text = en_font_medium.render(self.english, True, WHITE)
             screen.blit(eng_text, (self.x, self.y))
-            
+
             jpn_text = jp_font_small.render(self.japanese, True, YELLOW)
             screen.blit(jpn_text, (self.x, self.y + 30))
 
@@ -210,13 +212,13 @@ def game_over_screen():
 
     # Check if all words were matched
     all_matched = len(matched_words) == len(all_shown_words)
-    
+
     # Display game over or game clear message
     if all_matched:
         game_over_text = en_font_large.render("Game Clear!", True, GREEN)
     else:
         game_over_text = en_font_large.render("Game Over!", True, RED)
-    
+
     screen.blit(game_over_text, (SCREEN_WIDTH // 2 - 100, 30))
 
     # Display score and time
@@ -363,10 +365,14 @@ def main():
                                         # Set animation for matched word
                                         word.matched = True
                                         word.match_time = time.time()
-                                        
+
                                         score += 1
-                                        matched_words.append((word.english, word.japanese))
-                                        matched_word_pairs.add((word.english, word.japanese))
+                                        matched_words.append(
+                                            (word.english, word.japanese)
+                                        )
+                                        matched_word_pairs.add(
+                                            (word.english, word.japanese)
+                                        )
                                         input_text = ""
                                         break
                                 # Clear input even if no match
@@ -424,8 +430,12 @@ def main():
             current_time = time.time()
             if current_time - last_spawn_time > spawn_interval:
                 # Exclude already matched words when selecting new words
-                available_pairs = [(eng, jpn) for eng, jpn in word_pairs if (eng, jpn) not in matched_word_pairs]
-                
+                available_pairs = [
+                    (eng, jpn)
+                    for eng, jpn in word_pairs
+                    if (eng, jpn) not in matched_word_pairs
+                ]
+
                 # Check if all words have been matched
                 if not available_pairs:
                     # End game if all words are matched
@@ -435,15 +445,19 @@ def main():
                     # Generate new word
                     english, japanese = random.choice(available_pairs)
                     x = random.randint(50, SCREEN_WIDTH - 100)
-                    
+
                     # Increase speed based on time and score
-                    base_speed = 0.5 + (game_time / 60) * 0.5  # Increase speed by 0.5 every minute
-                    score_boost = min(score / 10, 1.0)  # Increase speed up to 1.0 based on score (every 10 points)
+                    base_speed = (
+                        0.5 + (game_time / 60) * 0.5
+                    )  # Increase speed by 0.5 every minute
+                    score_boost = min(
+                        score / 10, 1.0
+                    )  # Increase speed up to 1.0 based on score (every 10 points)
                     speed = random.uniform(base_speed, base_speed + 1.0 + score_boost)
-                    
+
                     falling_words.append(Word(english, japanese, x, speed))
                     last_spawn_time = current_time
-                    
+
                     # Decrease spawn interval based on score and time (increase difficulty)
                     spawn_interval = max(1.5, 5.0 - (game_time / 60) - (score / 20))
 
