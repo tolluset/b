@@ -187,22 +187,45 @@ def draw_score():
 
 
 def draw_input_box():
-    pygame.draw.rect(screen, WHITE, (50, SCREEN_HEIGHT - 40, SCREEN_WIDTH - 100, 30), 2)
+    # Make the input box larger and more centered
+    input_box_width = SCREEN_WIDTH - 100
+    input_box_height = 40
+    input_box_x = 50
+    input_box_y = SCREEN_HEIGHT - 50
+
+    # Draw the input box with a slightly thicker border
+    pygame.draw.rect(
+        screen, WHITE, (input_box_x, input_box_y, input_box_width, input_box_height), 2
+    )
+
+    # Add a semi-transparent background to make text more visible
+    input_bg = pygame.Surface((input_box_width - 4, input_box_height - 4))
+    input_bg.set_alpha(50)
+    input_bg.fill((50, 50, 50))
+    screen.blit(input_bg, (input_box_x + 2, input_box_y + 2))
 
     # Display the input text with proper font for Japanese characters
+    # Center the text vertically in the input box
     input_surface = jp_font_small.render(input_text, True, WHITE)
-    screen.blit(input_surface, (55, SCREEN_HEIGHT - 35))
+    text_y = input_box_y + (input_box_height - input_surface.get_height()) // 2
+    screen.blit(input_surface, (input_box_x + 10, text_y))
 
-    # Display IME composition text if available
+    # Display IME composition text if available with better highlighting
     if ime_text:
         ime_surface = jp_font_small.render(ime_text, True, YELLOW)
-        screen.blit(
-            ime_surface, (55 + input_surface.get_width() + 5, SCREEN_HEIGHT - 35)
+        ime_bg = pygame.Surface(
+            (ime_surface.get_width() + 4, ime_surface.get_height() + 2)
         )
+        ime_bg.set_alpha(100)
+        ime_bg.fill((100, 100, 0))
+        screen.blit(
+            ime_bg, (input_box_x + 10 + input_surface.get_width() - 2, text_y - 1)
+        )
+        screen.blit(ime_surface, (input_box_x + 10 + input_surface.get_width(), text_y))
 
     # Display a prompt for input
     prompt_text = en_font_small.render("Type katakana here:", True, GRAY)
-    screen.blit(prompt_text, (55, SCREEN_HEIGHT - 70))
+    screen.blit(prompt_text, (input_box_x + 5, input_box_y - 30))
 
 
 def game_over_screen():

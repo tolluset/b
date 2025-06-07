@@ -18,7 +18,7 @@ Inspired by [한컴타자연습 산성비](https://namu.wiki/w/%ED%95%9C%EC%BB%B
 
 <p align="center">
     <picture>
-      <img src="./.github/images/Jun-07-2025 15-21-23.gif" alt="Game Play"
+      <img src="./.github/images/game-play-gif.gif" alt="Game Play"
         width="65%"
       >
     </picture>
